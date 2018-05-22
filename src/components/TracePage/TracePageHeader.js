@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom';
 import * as markers from './TracePageHeader.markers';
 import { trackAltViewOpen } from './TracePageHeader.track';
 import KeyboardShortcutsHelp from './KeyboardShortcutsHelp';
+import UploadTraceHelp from './UploadTraceHelp';
 import LabeledList from '../common/LabeledList';
 import { FALLBACK_TRACE_NAME } from '../../constants';
 import { formatDatetime, formatDuration } from '../../utils/date';
@@ -169,6 +170,7 @@ export default function TracePageHeader(props: TracePageHeaderProps) {
             {name || FALLBACK_TRACE_NAME}
           </h1>
         </a>
+        <UploadTraceHelp className="ub-mr2" />
         <KeyboardShortcutsHelp className="ub-mr2" />
         <div className="ub-mr2">
           <Input
