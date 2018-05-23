@@ -56,6 +56,20 @@ function convertKeys(keyConfig: string | string[]): string[][] {
   return config.map(str => str.split('+').map(part => symbolConv[part] || part.toUpperCase()));
 }
 
+function showLoadedFile(event) {
+  console.log(event, 'Hi there');
+
+  const onReaderLoad = newEvent => {
+    console.log(newEvent.target.result);
+    const obj = JSON.parse(newEvent.target.result);
+    console.log(obj.data[0], 'eeeeeeeexito');
+  };
+
+  const reader = new FileReader();
+  reader.onload = onReaderLoad;
+  reader.readAsText(event.target.files[0]);
+}
+
 function helpModal() {
   track();
   const data = [];
@@ -71,23 +85,16 @@ function helpModal() {
   });
 
   const content = (
-    <Table
-      className="UploadTraceHelp--table"
-      dataSource={data}
-      bordered
-      size="middle"
-      pagination={false}
-    >
-      <Column title="Key(s)" dataIndex="kbds" key="kbds" />
-      <Column title="Description" dataIndex="description" key="description" />
-    </Table>
+    <form>
+      <input id="trace-file" type="file" onChange={event => {showLoadedFile(event)}} />
+    </form>
   );
 
   Modal.info({
     content,
     maskClosable: true,
-    title: 'Keyboard Shortcuts',
-    width: '50%',
+    title: 'Upload trace',
+    width: '70%',
   });
 }
 
