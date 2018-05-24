@@ -32,6 +32,9 @@ const NAV_LINKS = [
   {
     to: prefixUrl('/search'),
     text: 'Search',
+  }, {
+    to: prefixUrl('/upload'),
+    text: 'Upload JSONtrace',
   },
 ];
 

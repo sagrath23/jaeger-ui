@@ -17,6 +17,7 @@ import moment from 'moment';
 import queryString from 'query-string';
 
 import prefixUrl from '../utils/prefix-url';
+import db from '../utils/db';
 
 // export for tests
 export function getMessageFromError(errData, status) {
@@ -77,7 +78,25 @@ export const DEFAULT_DEPENDENCY_LOOKBACK = moment.duration(1, 'weeks').asMillise
 const JaegerAPI = {
   apiRoot: DEFAULT_API_ROOT,
   fetchTrace(id) {
-    return getJSON(`${this.apiRoot}traces/${id}`);
+    return new Promise((resolve, reject) => {
+      db.open();
+      db.traces.get({traceid: id}).then(result => {
+        const fakeResponse = {
+          data: [result.tracedata],
+          errors: null,
+          limit: 0,
+          offset: 0,
+          total: 0,
+        }
+        resolve(fakeResponse);
+      }).catch(error => {
+        console.warn(error);
+        // request to jaeger back-end
+        return getJSON(`${this.apiRoot}traces/${id}`);
+      })
+    });
+
+    // return getJSON(`${this.apiRoot}traces/${id}`);
   },
   archiveTrace(id) {
     return getJSON(`${this.apiRoot}archive/${id}`, { method: 'POST' });
@@ -96,4 +115,5 @@ const JaegerAPI = {
   },
 };
 
-export default JaegerAPI;
+export default JaegerAPI; 
+// Start Docker: docker run -d -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 -p 5775:5775/udp -p 6831:6831/udp -p 6832:6832/udp -p 5778:5778 -p 16686:16686 -p 14268:14268 -p 9411:9411 jaegertracing/all-in-one:latest

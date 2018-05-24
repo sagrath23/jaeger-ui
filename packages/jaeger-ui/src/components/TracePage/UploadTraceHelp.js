@@ -20,6 +20,8 @@ import { Button, Modal, Table } from 'antd';
 import { kbdMappings } from './keyboard-shortcuts';
 import track from './UploadTraceHelp.track';
 
+import db from '../../utils/db';
+
 import './UploadTraceHelp.css';
 
 type UploadTraceHelpProps = {
@@ -57,12 +59,15 @@ function convertKeys(keyConfig: string | string[]): string[][] {
 }
 
 function showLoadedFile(event) {
-  console.log(event, 'Hi there');
-
   const onReaderLoad = newEvent => {
-    console.log(newEvent.target.result);
     const obj = JSON.parse(newEvent.target.result);
     console.log(obj.data[0], 'eeeeeeeexito');
+    //open database & save trace
+    db.open();
+    db.traces.add({traceid: obj.data[0].traceID, tracedata: obj.data[0]}).then(result => {
+      console.log(result, 'Done add');
+    });
+
   };
 
   const reader = new FileReader();
@@ -95,6 +100,9 @@ function helpModal() {
     maskClosable: true,
     title: 'Upload trace',
     width: '70%',
+    onOk: () => {
+      console.log('Hi');
+    },
   });
 }
 
