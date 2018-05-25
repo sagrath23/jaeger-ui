@@ -44,3 +44,7 @@ export const fetchServiceOperations = createAction(
 export const fetchDependencies = createAction('@JAEGER_API/FETCH_DEPENDENCIES', () =>
   JaegerAPI.fetchDependencies()
 );
+
+export const saveUploadedTrace = createAction('@JAEGER_API/SAVE_UPLOADED_TRACE', 
+spansToUpload => JaegerAPI.saveUploadedTrace(spansToUpload),
+spansToUpload => ({spansToUpload}));

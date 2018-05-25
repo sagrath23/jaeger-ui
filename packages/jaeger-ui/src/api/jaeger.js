@@ -113,6 +113,9 @@ const JaegerAPI = {
   fetchDependencies(endTs = new Date().getTime(), lookback = DEFAULT_DEPENDENCY_LOOKBACK) {
     return getJSON(`${this.apiRoot}dependencies`, { query: { endTs, lookback } });
   },
+  saveUploadedTrace(spansToUpload) {
+    console.log(spansToUpload, 'saving... ');
+  }
 };
 
 export default JaegerAPI; 
