@@ -19,18 +19,39 @@ export default class UploadTracePage extends React.PureComponent<UploadTracePage
     constructor(props: UploadTracePageProps) {
         super(props);
         this.state = {
-            file: null,
             uploaded: false,
+            content: null
         };
+        this.uploadTraceFile = this.uploadTraceFile.bind(this);
     }
-    render() {
-        const uploadTraceFile = event => {
-            console.log(event, `i'm an event`);
+
+    uploadTraceFile(event) {
+        const onReaderLoad = newEvent => {
+            const obj = JSON.parse(newEvent.target.result);
+            this.setState({content: obj, uploaded: true});
         };
+
+        const reader = new FileReader();
+        reader.onload = onReaderLoad;
+        reader.readAsText(event.target.files[0]);
+        
+        this.setState({uploaded: true});
+    }
+
+    sendSpansToCollector(event) {
+        event.preventDefault();
+        console.log('Sending Spans to Collector');
+        if(this.state.uploaded) {
+            console.log('spans are uploaded');
+        }
+    }
+
+    render() {
         return (
         <form>
             <p>Suba su archivo de trazas aquí</p>
-            <input type="file" id="file" onChange={event => {uploadTraceFile(event)}}/>
+            <input type="file" id="file" onChange={event => {this.uploadTraceFile(event)}}/>
+            <button onClick={event => {this.sendSpansToCollector(event)}}>Upload Spans</button>
         </form>);
     }
 }
