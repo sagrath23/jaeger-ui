@@ -95,8 +95,6 @@ const JaegerAPI = {
         return getJSON(`${this.apiRoot}traces/${id}`);
       })
     });
-
-    // return getJSON(`${this.apiRoot}traces/${id}`);
   },
   archiveTrace(id) {
     return getJSON(`${this.apiRoot}archive/${id}`, { method: 'POST' });
@@ -114,7 +112,9 @@ const JaegerAPI = {
     return getJSON(`${this.apiRoot}dependencies`, { query: { endTs, lookback } });
   },
   saveUploadedTrace(spansToUpload) {
-    console.log(spansToUpload, 'saving... ');
+    //send to port 9411
+    //console.log(DEFAULT_API_ROOT, 'url');
+    console.log(spansToUpload, 'saving... madafacar!!!! ');
   }
 };
 
