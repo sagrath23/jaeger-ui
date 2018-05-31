@@ -27,7 +27,6 @@ const origin = process.env.NODE_ENV === 'test' ? global.location.origin : window
 const rx = new RegExp(`^${origin}|/$`, 'ig');
 const pathPrefix = sitePrefix.replace(rx, '');
 
-console.log(pathPrefix, 'path prefix');
 
 /**
  * Add the path prefix to the  URL. See [site-prefix.js](../site-prefix.js) and
