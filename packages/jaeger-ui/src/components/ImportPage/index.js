@@ -12,7 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import React, { Component } from 'react';
+import React from 'react';
+import { Col, Row } from 'antd';
 
-export const ImportTracePage = () => (<div>Work in progress...</div>);
+const ImportTracePage = () => (
+    <Row>
+        <Col span={18}>
+            <form>
+                <input id="trace-file" type="file" />
+            </form>
+        </Col>
+        
+    </Row>);
 
+export default ImportTracePage;

@@ -23,7 +23,7 @@ import Page from './Page';
 import { ConnectedDependencyGraphPage } from '../DependencyGraph';
 import { ConnectedSearchTracePage } from '../SearchTracePage';
 import { ConnectedTracePage } from '../TracePage';
-import { ImportTracePage } from '../ImportPage';
+import ImportTracePage  from '../ImportPage';
 import JaegerAPI, { DEFAULT_API_ROOT } from '../../api/jaeger';
 import configureStore from '../../utils/configure-store';
 import prefixUrl from '../../utils/prefix-url';
