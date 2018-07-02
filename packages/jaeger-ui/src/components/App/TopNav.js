@@ -33,6 +33,10 @@ const NAV_LINKS = [
     to: prefixUrl('/search'),
     text: 'Search',
   },
+  {
+    to: prefixUrl('/import'),
+    text: 'Import'
+  }
 ];
 
 if (getConfigValue('dependencies.menuEnabled')) {

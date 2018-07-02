@@ -78,8 +78,7 @@
   "scripts": {
     "build": "REACT_APP_VSN_STATE=$(../../scripts/get-tracking-version.js) react-app-rewired build",
     "coverage": "npm run test -- --coverage",
-    "start:ga-debug":
-      "REACT_APP_GA_DEBUG=1 REACT_APP_VSN_STATE=$(../../scripts/get-tracking-version.js) react-app-rewired start",
+    "start:ga-debug": "REACT_APP_GA_DEBUG=1 REACT_APP_VSN_STATE=$(../../scripts/get-tracking-version.js) react-app-rewired start",
     "start": "react-app-rewired start",
     "test-dev": "react-app-rewired test --env=jsdom",
     "test": "CI=1 react-app-rewired test --env=jsdom --color"
