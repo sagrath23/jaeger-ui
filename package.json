@@ -16,9 +16,7 @@
     "lint-staged": "^7.0.4",
     "prettier": "^1.10.2"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "scripts": {
     "build": "lerna run build",
     "check-license": "./scripts/check-license.sh",
@@ -27,7 +25,8 @@
     "flow": "glow",
     "lint": "npm run eslint && npm run prettier && npm run flow && npm run check-license",
     "precommit": "lint-staged",
-    "prettier": "prettier --write '{.,scripts}/*.{js,json,md}' 'packages/*/src/**/*.{css,js,json,md}' 'packages/*/*.{css,js,json,md}'",
+    "prettier":
+      "prettier --write '{.,scripts}/*.{js,json,md}' 'packages/*/src/**/*.{css,js,json,md}' 'packages/*/*.{css,js,json,md}'",
     "test": "lerna run test"
   },
   "prettier": {
@@ -37,14 +36,7 @@
     "trailingComma": "es5"
   },
   "lint-staged": {
-    "*.{css,js,json}": [
-      "npm run lint",
-      "npm run test",
-      "git add"
-    ],
-    "*.md": [
-      "npm run prettier",
-      "git add"
-    ]
+    "*.{css,js,json}": ["npm run lint", "npm run test", "git add"],
+    "*.md": ["npm run prettier", "git add"]
   }
 }

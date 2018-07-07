@@ -16,13 +16,13 @@ import React from 'react';
 import { Col, Row } from 'antd';
 
 const ImportTracePage = () => (
-    <Row>
-        <Col span={18}>
-            <form>
-                <input id="trace-file" type="file" />
-            </form>
-        </Col>
-        
-    </Row>);
+  <Row>
+    <Col span={18}>
+      <form>
+        <input id="trace-file" type="file" />
+      </form>
+    </Col>
+  </Row>
+);
 
 export default ImportTracePage;

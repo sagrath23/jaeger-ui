@@ -35,8 +35,8 @@ const NAV_LINKS = [
   },
   {
     to: prefixUrl('/import'),
-    text: 'Import'
-  }
+    text: 'Import',
+  },
 ];
 
 if (getConfigValue('dependencies.menuEnabled')) {
